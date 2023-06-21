@@ -13,8 +13,6 @@
         <ul>
             <li><a href="./index.php">Home</a></li>
             <li><a href="./add_event.php">Add Event</a></li>
-            <li><a href="./user_login.php">Login</a></li>
-            <li><a href="./user_registration.php">Register</a></li>
         </ul>
     </nav>
     

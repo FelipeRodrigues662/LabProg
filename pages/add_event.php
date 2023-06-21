@@ -1,5 +1,14 @@
 <?php
 require_once __DIR__ . '/../database/connection.php';
+require_once '../classes/User.php';
+
+session_start();
+
+// Verifica se o usuário está autenticado e se o tipo de usuário é "admin"
+if (!isset($_SESSION['user']) || unserialize($_SESSION['user'])->getUserType() !== 'admin') {
+    header('Location: ../services/unauthorized.php'); // Redireciona para a página "Sem Autorização"
+    exit();
+}
 
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -103,8 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <ul>
             <li><a href="./index.php">Home</a></li>
             <li><a href="./add_event.php">Add Event</a></li>
-            <li><a href="./user_login.php">Login</a></li>
-            <li><a href="./user_registration.php">Register</a></li>
+            <li><a href="./user_profile.php">Perfil</a></li>
+            <li><a href="../services/logout.php">Logout</a></li>
         </ul>
     </nav>
     

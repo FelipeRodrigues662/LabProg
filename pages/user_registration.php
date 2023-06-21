@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/User.php';
+require_once '../classes/User.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
@@ -7,7 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $userType = 'regular'; // Defina o tipo de usuário desejado
 
-    $user = new User($name, $email, $password, $userType);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $user = new User($name, $email, $hashedPassword, $userType);
     $user->save();
 
     echo 'User registered successfully.';

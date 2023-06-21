@@ -1,13 +1,12 @@
 <?php
-// Verifica se o usuário está autenticado, caso contrário, redireciona para a página de login
 session_start();
+require_once '../classes/User.php';
 
-if (!isset($_SESSION['user'])) {
-    header('Location: user_login.php');
-    exit();
+$user = null;
+if (isset($_SESSION['user'])) {
+    $user = unserialize($_SESSION['user']);
 }
 
-$user = $_SESSION['user'];
 ?>
 
 <!DOCTYPE html>
@@ -24,19 +23,23 @@ $user = $_SESSION['user'];
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <li><a href="./add_event.php">Add Event</a></li>
-            <li><a href="./user_login.php">Login</a></li>
-            <li><a href="./user_registration.php">Register</a></li>
+            <?php if ($user && $user->getUserType() === 'admin') : ?>
+                <li><a href="./add_event.php">Add Event</a></li>
+            <?php endif; ?>
+            <li><a href="./user_profile.php">Profile</a></li>
+            <li><a href="../services/logout.php">Logout</a></li>
         </ul>
     </nav>
     
     <section>
         <h2>User Profile</h2>
-        <p>Name: <?php echo $user->getName(); ?></p>
-        <p>Email: <?php echo $user->getEmail(); ?></p>
-        <p>User Type: <?php echo $user->getUserType(); ?></p>
-        
-        <a href="logout.php">Logout</a>
+        <?php if ($user) : ?>
+            <p>Name: <?php echo $user->getName(); ?></p>
+            <p>Email: <?php echo $user->getEmail(); ?></p>
+            <p>User Type: <?php echo $user->getUserType(); ?></p>
+        <?php else : ?>
+            <p>You are not logged in.</p>
+        <?php endif; ?>
     </section>
     
     <footer>

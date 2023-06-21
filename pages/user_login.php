@@ -7,18 +7,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Autentica o usuário
-    $user = User::authenticate($email, $password);
+    // Realiza as validações
+    $error = '';
+    if (empty($email)) {
+        $error .= 'Por favor, informe o e-mail.<br>';
+    }
+    if (empty($password)) {
+        $error .= 'Por favor, informe a senha.<br>';
+    }
 
-    if ($user) {
-        // Autenticação bem-sucedida, redireciona para a página de perfil do usuário
-        session_start();
-        $_SESSION['user'] = $user;
-        header('Location: user_profile.php');
-        exit();
-    } else {
-        // Credenciais inválidas, exibe uma mensagem de erro
-        $error = 'Credenciais inválidas. Tente novamente.';
+    if (empty($error)) {
+        // Autentica o usuário
+        $user = User::authenticate($email, $password);
+
+        if ($user) {
+            // Autenticação bem-sucedida, redireciona para a página de perfil do usuário
+            session_start();
+            $_SESSION['user'] = serialize($user); // Armazena o objeto User na sessão
+            header('Location: user_profile.php');
+            exit();
+        } else {
+            // Credenciais inválidas, exibe uma mensagem de erro
+            $error = 'Credenciais inválidas.';
+        }
     }
 }
 ?>
@@ -33,19 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
         <h1>Event Management System</h1>
     </header>
-    
-    <nav>
-        <ul>
-            <li><a href="./index.php">Home</a></li>
-            <li><a href="./add_event.php">Add Event</a></li>
-            <li><a href="./user_login.php">Login</a></li>
-            <li><a href="./user_registration.php">Register</a></li>
-        </ul>
-    </nav>
+
     
     <section>
         <h2>Login</h2>
-        <?php if (isset($error)) : ?>
+        <?php if (!empty($error)) : ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
         
