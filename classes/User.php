@@ -4,17 +4,23 @@ require_once __DIR__ . '/../database/connection.php';
 
 class User
 {
+    private $id;
     private $name;
     private $email;
     private $password;
     private $userType;
 
-    public function __construct($name, $email, $password, $userType)
+    public function __construct($id ,$name, $email, $password, $userType)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->userType = $userType;
+    }
+
+    public function getId() {
+        return $this->id;
     }
 
     public function getName()
@@ -54,13 +60,11 @@ class User
         $conn->close();
 
         if ($user && password_verify($password, $user['password'])) {
-            return new User($user['name'], $user['email'], $user['password'], $user['user_type']);
+            return new User($user['id'], $user['name'], $user['email'], $user['password'], $user['user_type']);
         } else {
             return null;
         }
     }
-
-
 
     public static function getUserByEmail($email)
     {
@@ -72,6 +76,7 @@ class User
         $user = $result->fetch_assoc();
         $stmt->close();
         $conn->close();
-        return $user ? new User($user['name'], $user['email'], $user['password'], $user['user_type']) : null;
+        return $user ? new User($user['id'], $user['name'], $user['email'], $user['password'], $user['user_type']) : null;
     }
+
 }

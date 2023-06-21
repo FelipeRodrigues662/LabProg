@@ -30,6 +30,7 @@ if (isset($_SESSION['user'])) {
             <?php endif; ?>
             <?php if ($user instanceof User) : ?>
                 <li><a href="./user_profile.php">Profile</a></li>
+                <li><a href="./process_registration.php">Registrar evento</a></li>
                 <li><a href="../services/logout.php">Logout</a></li>
             <?php else : ?>
                 <li><a href="./user_login.php">Login</a></li>

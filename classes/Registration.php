@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../database/connection.php';
+require_once __DIR__ . '/Event.php';
 
 class Registration {
     private $id;
@@ -65,5 +66,39 @@ class Registration {
         $conn->close();
         return $registration ? new Registration($registration['user_id'], $registration['event_id'], $registration['payment_status']) : null;
     }
+
+    public static function createRegistration($userId, $eventId, $paymentStatus) {
+        $registration = new Registration($userId, $eventId, $paymentStatus);
+        $registration->save();
+        return $registration->getId();
+    }
+
+    public static function getRegisteredEvents($userId) {
+        $conn = getConnection();
+        $stmt = $conn->prepare("SELECT e.id, e.title, e.description, e.date, e.time, e.location, e.category_id, e.price, e.images 
+                                FROM events e 
+                                INNER JOIN registrations r ON e.id = r.event_id 
+                                WHERE r.user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $events = [];
+        while ($event = $result->fetch_assoc()) {
+            $events[] = new Event($event['id'], $event['title'], $event['description'], $event['date'], $event['time'], $event['location'], $event['category_id'], $event['price'], $event['images']);
+        }
+        $stmt->close();
+        $conn->close();
+        return $events;
+    }
+
+    public static function deleteById($eventId) {
+        $conn = getConnection();
+        $stmt = $conn->prepare("DELETE FROM registrations WHERE event_id = ?");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
 }
+
 ?>

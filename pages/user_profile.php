@@ -1,12 +1,18 @@
 <?php
 session_start();
 require_once '../classes/User.php';
+require_once '../classes/Registration.php';
 
 $user = null;
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
 }
 
+$registeredEvents = [];
+if ($user) {
+    // Obter os eventos registrados pelo usuário
+    $registeredEvents = Registration::getRegisteredEvents($user->getId());
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +43,26 @@ if (isset($_SESSION['user'])) {
             <p>Name: <?php echo $user->getName(); ?></p>
             <p>Email: <?php echo $user->getEmail(); ?></p>
             <p>User Type: <?php echo $user->getUserType(); ?></p>
+
+            <h3>Registered Events:</h3>
+            <?php if (!empty($registeredEvents)) : ?>
+                <ul>
+                <?php foreach ($registeredEvents as $event) : ?>
+                    <li>
+                        <?php echo $event->getTitle(); ?><br>
+                        Status: <?php echo $event->getPaymentStatus(); ?><br>
+                        Event Date: <?php echo $event->getDate(); ?><br>
+                        <a href="./reviews.php?event_id=<?php echo $event->getId(); ?>">Reviews</a><br>
+                        <form action="../services/delete_event.php" method="post">
+                            <input type="hidden" name="event_id" value="<?php echo $event->getId(); ?>">
+                            <button type="submit">Delete Event</button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
+            <?php else : ?>
+                <p>No registered events.</p>
+            <?php endif; ?>
         <?php else : ?>
             <p>You are not logged in.</p>
         <?php endif; ?>
