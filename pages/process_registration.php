@@ -25,11 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($registrationId) {
         // Registro criado com sucesso
-        header('Location: registration_success.php');
+        header('Location: user_profile.php');
         exit();
     } else {
-        // Ocorreu um erro durante a inserção do registro
-        header('Location: registration_error.php');
         exit();
     }
 }
@@ -76,9 +74,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <li><a href="./add_event.php">Add Event</a></li>
-            <li><a href="./user_profile.php">Perfil</a></li>
-            <li><a href="../services/logout.php">Logout</a></li>
+            <?php if ($user instanceof User && $user->getUserType() === 'admin') : ?>
+                <li><a href="./add_event.php">Add Event</a></li>
+            <?php endif; ?>
+            <?php if ($user instanceof User) : ?>
+                <li><a href="./process_registration.php">Registrar evento</a></li>
+                <li><a href="./user_profile.php">Profile</a></li>
+                <li><a href="../services/logout.php">Logout</a></li>
+            <?php else : ?>
+                <li><a href="./user_login.php">Login</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 

@@ -75,5 +75,29 @@ class Review {
         $conn->close();
         return $review ? new Review($review['user_id'], $review['event_id'], $review['score'], $review['comment']) : null;
     }
+
+    public static function getReviewsByEventId($event_id) {
+        $conn = getConnection();
+        $stmt = $conn->prepare("SELECT * FROM reviews WHERE event_id = ?");
+        $stmt->bind_param("i", $event_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $reviews = array();
+        while ($row = $result->fetch_assoc()) {
+            $reviews[] = $row;
+        }
+        $stmt->close();
+        $conn->close();
+        return $reviews;
+    }
+    
+    public static function deleteById($eventId) {
+        $conn = getConnection();
+        $stmt = $conn->prepare("DELETE FROM reviews WHERE event_id = ?");
+        $stmt->bind_param("i", $eventId);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
 }
 ?>

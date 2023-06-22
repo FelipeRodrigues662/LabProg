@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once '../classes/User.php';
+
+$user = null;
+if (isset($_SESSION['user'])) {
+    $user = unserialize($_SESSION['user']);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +23,16 @@
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <li><a href="./add_event.php">Add Event</a></li>
+            <?php if ($user instanceof User && $user->getUserType() === 'admin') : ?>
+                <li><a href="./add_event.php">Add Event</a></li>
+            <?php endif; ?>
+            <?php if ($user instanceof User) : ?>
+                <li><a href="./process_registration.php">Registrar evento</a></li>
+                <li><a href="./user_profile.php">Profile</a></li>
+                <li><a href="../services/logout.php">Logout</a></li>
+            <?php else : ?>
+                <li><a href="./user_login.php">Login</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
     

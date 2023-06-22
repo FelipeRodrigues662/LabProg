@@ -3,8 +3,8 @@
 function getConnection() {
     
     $servername = 'localhost';
-    $username = 'sa';
-    $password = '543219876Dk';
+    $username = 'root';
+    $password = '';
     $database = 'labprog';
 
     $conn = new mysqli($servername, $username, $password, $database);

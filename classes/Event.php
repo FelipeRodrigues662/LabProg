@@ -111,14 +111,29 @@ class Event {
     // Database interaction methods
     public function save() {
         $conn = getConnection();
-        $stmt = $conn->prepare("INSERT INTO events (title, description, date, time, location, category_id, price, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssisS", $this->title, $this->description, $this->date, $this->time, $this->location, $this->categoryId, $this->price, $this->images);
+    
+        if ($this->id) {
+            // Atualizar evento existente
+            $stmt = $conn->prepare("UPDATE events SET title = ?, description = ?, date = ?, time = ?, location = ?, category_id = ?, price = ?, images = ? WHERE id = ?");
+            $stmt->bind_param("ssssssdsi", $this->title, $this->description, $this->date, $this->time, $this->location, $this->categoryId, $this->price, $this->images, $this->id);
+        } else {
+            // Inserir novo evento
+            $stmt = $conn->prepare("INSERT INTO events (title, description, date, time, location, category_id, price, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssds", $this->title, $this->description, $this->date, $this->time, $this->location, $this->categoryId, $this->price, $this->images);
+        }
+    
         $stmt->execute();
-        $this->id = $stmt->insert_id;
+    
+        // Se for uma inserção, definir o ID do evento
+        if (!$this->id) {
+            $this->id = $stmt->insert_id;
+        }
+    
         $stmt->close();
         $conn->close();
     }
-
+    
+    
     public static function getById($id) {
         $conn = getConnection();
         $stmt = $conn->prepare("SELECT * FROM events WHERE id = ?");
@@ -171,4 +186,6 @@ class Event {
         $stmt->close();
         $conn->close();
     }
+
+
 }

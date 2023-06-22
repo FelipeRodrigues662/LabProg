@@ -2,6 +2,7 @@
 require_once '../classes/User.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -9,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $user = new User($name, $email, $hashedPassword, $userType);
+    $user = new User($id ,$name, $email, $hashedPassword, $userType);
     $user->save();
 
-    echo 'User registered successfully.';
+    header('Location: user_login.php');
 }
 ?>
 
