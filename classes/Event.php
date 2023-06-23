@@ -187,5 +187,20 @@ class Event {
         $conn->close();
     }
 
-
+    public static function searchEvents($query) {
+        $conn = getConnection();
+        $stmt = $conn->prepare("SELECT * FROM events WHERE title LIKE ?");
+        $searchQuery = "%" . $query . "%";
+        $stmt->bind_param("s", $searchQuery);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $events = [];
+        while ($event = $result->fetch_assoc()) {
+            $events[] = new Event($event['id'], $event['title'], $event['description'], $event['date'], $event['time'], $event['location'], $event['category_id'], $event['price'], $event['images']);
+        }
+        $stmt->close();
+        $conn->close();
+        return $events;
+    }
+    
 }

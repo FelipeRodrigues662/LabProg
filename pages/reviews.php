@@ -66,15 +66,15 @@ if ($event_id) {
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <?php if ($user instanceof User && $user->getUserType() === 'admin') : ?>
-                <li><a href="./add_event.php">Add Event</a></li>
+            <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')) : ?>
+                <li><a href="../pages/add_event.php">Add Event</a></li>
             <?php endif; ?>
             <?php if ($user instanceof User) : ?>
-                <li><a href="./process_registration.php">Registrar evento</a></li>
-                <li><a href="./user_profile.php">Profile</a></li>
+                <li><a href="../pages/process_registration.php">Registrar evento</a></li>
+                <li><a href="../pages/user_profile.php">Profile</a></li>
                 <li><a href="../services/logout.php">Logout</a></li>
             <?php else : ?>
-                <li><a href="./user_login.php">Login</a></li>
+                <li><a href="../pages/user_login.php">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>
@@ -84,7 +84,6 @@ if ($event_id) {
         <?php if (!empty($reviews)) : ?>
             <?php foreach ($reviews as $review) : ?>
                 <?php
-                // Obtenha o objeto User correspondente ao ID do usuário da avaliação
                 $reviewer = User::getById($review['user_id']);
                 ?>
                 <div class="review">
@@ -113,13 +112,13 @@ if ($event_id) {
                 <textarea name="comment" id="comment" rows="4"></textarea>
                 <button type="submit">Submit Review</button>
             </form>
+            <a href="./user_profile.php">voltar</a>
         <?php else : ?>
             <p>You need to be logged in to add a review.</p>
         <?php endif; ?>
     </section>
     
     <footer>
-        <p>&copy; <?php echo date('Y'); ?> Event Reviews. All rights reserved.</p>
     </footer>
 </body>
 </html>

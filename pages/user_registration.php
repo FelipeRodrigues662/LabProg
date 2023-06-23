@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $userType = 'regular'; // Defina o tipo de usuário desejado
+    $userType = 'regular';
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -28,15 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Event Management System</h1>
     </header>
     
-    <nav>
-        <ul>
-            <li><a href="./index.php">Home</a></li>
-            <li><a href="./add_event.php">Add Event</a></li>
-            <li><a href="./user_login.php">Login</a></li>
-            <li><a href="./user_registration.php">Register</a></li>
-        </ul>
-    </nav>
-    
     <form action="user_registration.php" method="POST">
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" required>
@@ -49,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
         <input type="submit" value="Register">
     </form>
-    
+    <br>
+    <a href="user_login.php">Voltar para o Login</a>
     <footer>
-        <p>&copy; 2023 Event Management System. All rights reserved.</p>
     </footer>
 </body>
 </html>

@@ -1,8 +1,14 @@
 /* Estilo geral */
+*{
+    text-decoration: none;
+    color: inherit;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    text-decoration: none;
+    color: inherit;
 }
 
 .container {
@@ -68,61 +74,7 @@ section {
     margin-bottom: 10px;
 }
 
-/* Carrossel */
-.events-carousel .slick-slider {
-    display: flex;
-}
 
-.events-carousel .slick-slider .event {
-    flex: 0 0 33.33%;
-    margin: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    box-sizing: border-box;
-    transition: transform 0.3s;
-}
-
-.events-carousel .slick-slider .event:hover {
-    transform: scale(1.05);
-}
-
-.events-carousel .slick-slider .event h3 {
-    margin-top: 0;
-}
-
-.events-carousel .slick-slider .event p {
-    margin-bottom: 5px;
-}
-
-.events-carousel .slick-slider .event img {
-    width: 100%;
-    height: auto;
-}
-
-.events-carousel .slick-slider .slick-arrow {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 30px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: opacity 0.3s;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.events-carousel .slick-slider .slick-prev {
-    left: -40px;
-}
-
-.events-carousel .slick-slider .slick-next {
-    right: -40px;
-}
-
-.events-carousel .slick-slider .slick-arrow:hover {
-    opacity: 0.8;
-}
 
 /* Formulário */
 .form-section {

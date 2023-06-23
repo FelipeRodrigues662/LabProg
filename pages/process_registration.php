@@ -10,21 +10,17 @@ if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
     $userId = $user->getId();
 } else {
-    // Redirecionar o usuário para fazer o login, se necessário
     header('Location: login.php');
     exit();
 }
 
-// Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $eventId = $_POST['event_id']; // Alterado para event_id
+    $eventId = $_POST['event_id'];
     $paymentStatus = isset($_POST['payment']) ? 'paid' : 'pending';
 
-    // Realizar a inserção na tabela de registros
     $registrationId = Registration::createRegistration($userId, $eventId, $paymentStatus);
 
     if ($registrationId) {
-        // Registro criado com sucesso
         header('Location: user_profile.php');
         exit();
     } else {
@@ -36,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Event Management System - Registration</title>
+    <title>Sistema de Gerenciamento de Eventos - Registro</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <style>
         .event-container {
@@ -68,37 +64,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <header>
-        <h1>Event Management System</h1>
+        <h1>Sistema de Gerenciamento de Eventos</h1>
     </header>
     
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <?php if ($user instanceof User && $user->getUserType() === 'admin') : ?>
-                <li><a href="./add_event.php">Add Event</a></li>
+            <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')) : ?>
+                <li><a href="../pages/add_event.php">Add Event</a></li>
             <?php endif; ?>
             <?php if ($user instanceof User) : ?>
-                <li><a href="./process_registration.php">Registrar evento</a></li>
-                <li><a href="./user_profile.php">Profile</a></li>
+                <li><a href="../pages/process_registration.php">Registrar evento</a></li>
+                <li><a href="../pages/user_profile.php">Profile</a></li>
                 <li><a href="../services/logout.php">Logout</a></li>
             <?php else : ?>
-                <li><a href="./user_login.php">Login</a></li>
+                <li><a href="../pages/user_login.php">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>
 
     <section>
-        <h2>Registration</h2>
+        <h2>Registro</h2>
+        <div>
+            <input type="text" id="searchInput" placeholder="Buscar eventos">
+            <button id="searchButton">Buscar</button>
+        </div>
         <form method="POST" action="">
             <div>
-                <label for="category">Category:</label>
-                <!-- Exemplo de como obter dinamicamente as categorias do banco de dados -->
+                <label for="category">Categoria:</label>
                 <?php
-                $categories = Category::getAll(); // Obtenha todas as categorias do banco de dados
+                $categories = Category::getAll(); 
 
                 if (!empty($categories)) {
-                    echo "<select name='category' id='category' required>";
-                    echo "<option value=''>Select a category</option>";
+                    echo "<select name='category' id='category'>";
+                    echo "<option value=''>Selecione uma categoria</option>";
 
                     foreach ($categories as $category) {
                         echo "<option value='" . $category->getId() . "'>" . $category->getName() . "</option>";
@@ -106,27 +105,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     echo "</select>";
                 } else {
-                    echo "<p>No categories found.</p>";
+                    echo "<p>Nenhuma categoria encontrada.</p>";
                 }
                 ?>
             </div>
 
             <div id="eventsContainer">
-                <!-- Aqui será exibida a lista de eventos -->
+  
             </div>
 
-            <label for="payment">Payment:</label>
+            <label for="payment">Pagamento:</label>
             <input type="checkbox" id="payment" name="payment">
 
-            <!-- Campo oculto para enviar o ID do evento selecionado -->
             <input type="hidden" id="event_id" name="event_id">
 
-            <button type="submit">Register</button>
+            <button type="submit">Registrar</button>
         </form>
     </section>
     
     <footer>
-        <p>&copy; 2023 Event Management System. All rights reserved.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -154,7 +151,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 var eventId = $(this).data('event-id');
                 var eventDetails = $(this).siblings('.event-details');
                 eventDetails.toggleClass('hidden');
-                $('#event_id').val(eventId); // Define o valor do input "event_id" com o ID do evento selecionado
+                $('#event_id').val(eventId);
+            });
+
+            // Função para realizar a pesquisa
+            function performSearch(searchText) {
+                $.ajax({
+                    url: '../services/search_events.php',
+                    method: 'POST',
+                    data: { search_text: searchText },
+                    success: function(response) {
+                        $('#eventsContainer').html(response);
+                    }
+                });
+            }
+
+            // Lidar com o clique no botão de pesquisa
+            $('#searchButton').click(function(e) {
+                e.preventDefault();
+                var searchText = $('#searchInput').val();
+                performSearch(searchText);
+            });
+
+            // Lidar com a tecla Enter pressionada no campo de pesquisa
+            $('#searchInput').keypress(function(e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    var searchText = $(this).val();
+                    performSearch(searchText);
+                }
             });
         });
     </script>

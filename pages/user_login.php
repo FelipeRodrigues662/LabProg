@@ -1,13 +1,11 @@
 <?php
 require_once '../classes/User.php';
 
-// Verifica se o formulário foi submetido
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtém os dados do formulário
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Realiza as validações
     $error = '';
     if (empty($email)) {
         $error .= 'Por favor, informe o e-mail.<br>';
@@ -17,17 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($error)) {
-        // Autentica o usuário
         $user = User::authenticate($email, $password);
 
         if ($user) {
-            // Autenticação bem-sucedida, redireciona para a página de perfil do usuário
             session_start();
-            $_SESSION['user'] = serialize($user); // Armazena o objeto User na sessão
+            $_SESSION['user'] = serialize($user); 
             header('Location: user_profile.php');
             exit();
         } else {
-            // Credenciais inválidas, exibe uma mensagem de erro
             $error = 'Credenciais inválidas.';
         }
     }
@@ -61,10 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <button type="submit">Login</button>
         </form>
+
+        <p>Não possui uma conta? <a href="./user_registration.php">Registrar-se</a></p>
     </section>
     
     <footer>
-        <p>&copy; 2023 Event Management System. All rights reserved.</p>
     </footer>
 </body>
 </html>

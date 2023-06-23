@@ -10,7 +10,6 @@ if (isset($_SESSION['user'])) {
 
 $registeredEvents = [];
 if ($user) {
-    // Obter os eventos registrados pelo usuário
     $registeredEvents = Registration::getRegisteredEvents($user->getId());
 }
 ?>
@@ -49,15 +48,15 @@ if ($user) {
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <?php if ($user instanceof User && $user->getUserType() === 'admin') : ?>
-                <li><a href="./add_event.php">Add Event</a></li>
+            <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')) : ?>
+                <li><a href="../pages/add_event.php">Add Event</a></li>
             <?php endif; ?>
             <?php if ($user instanceof User) : ?>
-                <li><a href="./process_registration.php">Registrar evento</a></li>
-                <li><a href="./user_profile.php">Profile</a></li>
+                <li><a href="../pages/process_registration.php">Registrar evento</a></li>
+                <li><a href="../pages/user_profile.php">Profile</a></li>
                 <li><a href="../services/logout.php">Logout</a></li>
             <?php else : ?>
-                <li><a href="./user_login.php">Login</a></li>
+                <li><a href="../pages/user_login.php">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>
@@ -68,6 +67,12 @@ if ($user) {
             <p>Name: <?php echo $user->getName(); ?></p>
             <p>Email: <?php echo $user->getEmail(); ?></p>
             <p>User Type: <?php echo $user->getUserType(); ?></p>
+            <?php if ($user instanceof User && $user->getUserType() === 'grant_admin') : ?>
+                <a href="./admin.php">Admin</a>
+            <?php endif; ?>
+            <?php if ($user instanceof User && $user->getUserType() === 'admin') : ?>
+                <a href="./event_list.php">Lista de Eventos</a>
+            <?php endif; ?>
             <br>
             <h3>Registered Events:</h3>
             <?php if (!empty($registeredEvents)) : ?>
@@ -109,7 +114,6 @@ if ($user) {
     </section>
     
     <footer>
-        <p>&copy; 2023 Event Management System. All rights reserved.</p>
     </footer>
 </body>
 </html>

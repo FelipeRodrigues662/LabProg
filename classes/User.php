@@ -41,8 +41,27 @@ class User
     public function save()
     {
         $conn = getConnection();
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password, user_type) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $this->name, $this->email, $this->password, $this->userType);
+        
+        // Verificar se o usuário já existe no banco de dados
+        $existingUser = User::getUserByEmail($this->email);
+        
+        if ($existingUser) {
+            // Atualizar os dados do usuário
+            if (empty($this->password)) {
+                // Manter a senha existente
+                $stmt = $conn->prepare("UPDATE users SET name = ?, user_type = ? WHERE email = ?");
+                $stmt->bind_param("sss", $this->name, $this->userType, $this->email);
+            } else {
+                // Atualizar a senha
+                $stmt = $conn->prepare("UPDATE users SET name = ?, password = ?, user_type = ? WHERE email = ?");
+                $stmt->bind_param("ssss", $this->name, $this->password, $this->userType, $this->email);
+            }
+        } else {
+            // Inserir um novo usuário
+            $stmt = $conn->prepare("INSERT INTO users (name, email, password, user_type) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $this->name, $this->email, $this->password, $this->userType);
+        }
+        
         $stmt->execute();
         $stmt->close();
         $conn->close();
@@ -91,5 +110,32 @@ class User
         $conn->close();
         return $user ? new User($user['id'], $user['name'], $user['email'], $user['password'], $user['user_type']) : null;
     }
+
+    public static function getUsers($search = null) {
+        $conn = getConnection(); // Supondo que a função getConnection() esteja definida dentro da classe User
+        $stmt = $conn->prepare("SELECT * FROM users WHERE name LIKE ?");
+        $searchTerm = "%" . $search . "%";
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $users = [];
+        while ($row = $result->fetch_assoc()) {
+            $user = new User($row['id'], $row['name'], $row['email'], $row['password'], $row['user_type']);
+            $users[] = $user;
+        }
+        $stmt->close();
+        $conn->close();
+        return $users;
+    }
+    public static function deleteById($id)
+    {
+        $conn = getConnection();
+        $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
+
 
 }

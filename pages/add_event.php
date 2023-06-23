@@ -1,13 +1,17 @@
 <?php
 require_once __DIR__ . '/../database/connection.php';
-require_once '../classes/User.php';
+require_once __DIR__ . '/../classes/User.php';
 
 session_start();
 
-// Verifica se o usuário está autenticado e se o tipo de usuário é "admin"
-if (!isset($_SESSION['user']) || unserialize($_SESSION['user'])->getUserType() !== 'admin') {
-    header('Location: ../services/unauthorized.php'); // Redireciona para a página "Sem Autorização"
+if (!isset($_SESSION['user']) || (unserialize($_SESSION['user'])->getUserType() !== 'admin' && unserialize($_SESSION['user'])->getUserType() !== 'grant_admin')) {
+    header('Location: ../services/unauthorized.php');
     exit();
+}
+
+$user = null;
+if (isset($_SESSION['user'])) {
+    $user = unserialize($_SESSION['user']);
 }
 
 // Verifica se o formulário foi submetido
@@ -71,21 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p class='error'>$error</p>";
         }
     } else {
-        // Salva o evento no banco de dados
+    
         $conn = getConnection();
         $stmt = $conn->prepare("INSERT INTO events (title, description, date, time, location, category_id, price, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param('sssssiss', $title, $description, $date, $time, $location, $categoryId, $price, $images);
 
-        
         if ($stmt->execute()) {
-            // Evento inserido com sucesso
+           
             $event_id = $stmt->insert_id;
             echo "Event inserted successfully. Event ID: " . $event_id;
-            // Redireciona para a página de lista de eventos ou exibe uma mensagem de sucesso
-            // header('Location: event_list.php');
-            // exit();
         } else {
-            // Erro ao inserir evento
+      
             echo "Error inserting event: " . $stmt->error;
         }
 
@@ -94,8 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
-<!-- Resto do código HTML permanece igual -->
 
 <!DOCTYPE html>
 <html>
@@ -111,16 +109,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <li><a href="./add_event.php">Add Event</a></li>
-            <li><a href="./user_profile.php">Perfil</a></li>
-            <li><a href="../services/logout.php">Logout</a></li>
+            <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')) : ?>
+                <li><a href="../pages/add_event.php">Add Event</a></li>
+            <?php endif; ?>
+            <?php if ($user instanceof User) : ?>
+                <li><a href="../pages/process_registration.php">Registrar evento</a></li>
+                <li><a href="../pages/user_profile.php">Profile</a></li>
+                <li><a href="../services/logout.php">Logout</a></li>
+            <?php else : ?>
+                <li><a href="../pages/user_login.php">Login</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
     
     <section>
-        <h2 >Add Event</h2>
+        <h2>Add Event</h2>
         <!-- Formulário para adicionar um evento -->
-        <form action="add_event.php" method="POST">
+        <form action="./add_event.php" method="POST">
             <div>
                 <label for="title">Title:</label>
                 <input type="text" name="title" id="title" required>
@@ -143,11 +148,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div>
                 <label for="category">Category:</label>
-                <!-- Exemplo de como obter dinamicamente as categorias do banco de dados -->
-                <?php
-                require_once '../classes/Category.php'; // Inclua a classe Category
 
-                $categories = Category::getAll(); // Obtenha todas as categorias do banco de dados
+                <?php
+                require_once __DIR__ . '/../classes/Category.php'; 
+
+                $categories = Category::getAll(); 
 
                 if (!empty($categories)) {
                     echo "<select name='category' id='category' required>";

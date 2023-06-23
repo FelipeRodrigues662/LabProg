@@ -1,6 +1,12 @@
 <?php
 session_start();
+
 require_once '../classes/User.php';
+
+if (!isset($_SESSION['user']) || (unserialize($_SESSION['user'])->getUserType() !== 'admin' && unserialize($_SESSION['user'])->getUserType() !== 'grant_admin')) {
+    header('Location: ../services/unauthorized.php'); 
+    exit();
+}
 
 $user = null;
 if (isset($_SESSION['user'])) {
@@ -41,6 +47,21 @@ if (isset($_SESSION['user'])) {
             margin: 0;
             font-size: 16px;
         }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .search-bar button[type="submit"] {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -51,15 +72,15 @@ if (isset($_SESSION['user'])) {
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <?php if ($user instanceof User && $user->getUserType() === 'admin') : ?>
-                <li><a href="./add_event.php">Add Event</a></li>
+            <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')) : ?>
+                <li><a href="../pages/add_event.php">Add Event</a></li>
             <?php endif; ?>
             <?php if ($user instanceof User) : ?>
-                <li><a href="./process_registration.php">Registrar evento</a></li>
-                <li><a href="./user_profile.php">Profile</a></li>
+                <li><a href="../pages/process_registration.php">Registrar evento</a></li>
+                <li><a href="../pages/user_profile.php">Profile</a></li>
                 <li><a href="../services/logout.php">Logout</a></li>
             <?php else : ?>
-                <li><a href="./user_login.php">Login</a></li>
+                <li><a href="../pages/user_login.php">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>
@@ -69,7 +90,20 @@ if (isset($_SESSION['user'])) {
         require_once __DIR__ . '/../database/connection.php';
         require_once '../classes/Event.php';
 
-        $events = Event::getAll();
+        // Verificar se a barra de pesquisa foi submetida
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $events = Event::searchEvents($search);
+        } else {
+            $events = Event::getAll();
+        }
+
+        echo "<div class='search-bar'>";
+        echo "<form action='event_list.php' method='GET'>";
+        echo "<input type='text' name='search' placeholder='Pesquisar evento'>";
+        echo "<button type='submit'>Pesquisar</button>";
+        echo "</form>";
+        echo "</div>";
 
         if (!empty($events)) {
             echo "<h2>Event List</h2>";
@@ -96,7 +130,6 @@ if (isset($_SESSION['user'])) {
     </section>
     
     <footer>
-        <p>&copy; 2023 Event System</p>
     </footer>
 </body>
 </html>
