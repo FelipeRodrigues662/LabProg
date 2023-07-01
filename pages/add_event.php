@@ -75,17 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p class='error'>$error</p>";
         }
     } else {
-    
+
         $conn = getConnection();
         $stmt = $conn->prepare("INSERT INTO events (title, description, date, time, location, category_id, price, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param('sssssiss', $title, $description, $date, $time, $location, $categoryId, $price, $images);
 
         if ($stmt->execute()) {
-           
+
             $event_id = $stmt->insert_id;
             echo "Event inserted successfully. Event ID: " . $event_id;
         } else {
-      
+
             echo "Error inserting event: " . $stmt->error;
         }
 
@@ -95,64 +95,119 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<style>
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 80px;
+    }
+
+    .formulario-event {
+        background-color: #f0f0f0;
+        padding: 40px;
+        border-radius: 20px;
+        width: 800px;
+        box-shadow: 4px 4px 8px black;
+    }
+
+    .formulario-event input {
+        border-radius: 10px;
+        padding: 14px;
+        border: none;
+    }
+
+    div1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .btn-addevent {
+        background-color: transparent;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        background-color: #014bfd;
+        color: #f1f1f1;
+        cursor: pointer;
+        margin-bottom: 1px;
+        transition: 0.9s;
+    }
+
+    .btn-addevent:hover {
+        background-color: #3858e9;
+        transform: scale(1.1);
+    }
+</style>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Event Management System - Add Event</title>
-    <link rel="stylesheet" type="text/css" href="../css/add_event.css">
+    <title>Add Event</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
+
 <body>
     <header>
-        <h1>Event Management System</h1>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="./index.php"><img class="home-page" src="../assets/home.png" alt="HomePage"></a></li>
+                <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')): ?>
+                    <li><a class="register-event" href="../pages/add_event.php">Add Event</a></li>
+                <?php endif; ?>
+                <?php if ($user instanceof User): ?>
+                    <li><a class="register-event" href="../pages/process_registration.php">Registrar evento</a></li>
+                    <li><a href="../pages/user_profile.php"><img class="perfil-img" src="../assets/perfil.png" alt=""></a>
+                    </li>
+                    <li><a href="../services/logout.php"><img class="leave-img" src="../assets/sair.png" alt=""></a></li>
+                <?php else: ?>
+                    <li><a href="../pages/user_login.php">Login</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
     </header>
-    
-    <nav>
-        <ul>
-            <li><a href="./index.php">Home</a></li>
-            <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')) : ?>
-                <li><a href="../pages/add_event.php">Add Event</a></li>
-            <?php endif; ?>
-            <?php if ($user instanceof User) : ?>
-                <li><a href="../pages/process_registration.php">Registrar evento</a></li>
-                <li><a href="../pages/user_profile.php">Profile</a></li>
-                <li><a href="../services/logout.php">Logout</a></li>
-            <?php else : ?>
-                <li><a href="../pages/user_login.php">Login</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-    
+
+
+
     <section>
         <h2>Add Event</h2>
         <!-- Formulário para adicionar um evento -->
-        <form action="./add_event.php" method="POST">
-            <div>
-                <label for="title">Title:</label>
-                <input type="text" name="title" id="title" required>
-            </div>
-            <div>
-                <label for="description">Description:</label>
-                <textarea name="description" id="description" required></textarea>
-            </div>
-            <div>
-                <label for="date">Date:</label>
-                <input type="date" name="date" id="date" required>
-            </div>
-            <div>
+
+        <form class="formulario-event" action="./add_event.php" method="POST">
+            <div1>
+                <!-- <label for="title">Title:</label> -->
+                <input placeholder="Title" type="text" name="title" id="title" required>
+            </div1>
+            <div1>
+                <!-- <label for="description">Description:</label> -->
+                <input placeholder="Description" name="description" id="description" required></input>
+            </div1>
+            <div1>
+                <!-- <label for="date">Date:</label> -->
+                <input placeholder="Date" type="date" name="date" id="date" required>
+            </div1>
+            <div1>
                 <label for="time">Time:</label>
-                <input type="time" name="time" id="time" required>
-            </div>
-            <div>
-                <label for="location">Location:</label>
-                <input type="text" name="location" id="location" required>
-            </div>
-            <div>
-                <label for="category">Category:</label>
+                <input type="time" placeholder="Time" name="time" id="time" required>
+            </div1>
+            <div1>
+                <!-- <label for="location">Location:</label> -->
+                <input placeholder="Location" type="text" name="location" id="location" required>
+            </div1>
+            <div1>
+                <!-- <label for="category">Category:</label> -->
+
 
                 <?php
-                require_once __DIR__ . '/../classes/Category.php'; 
+                require_once __DIR__ . '/../classes/Category.php';
 
-                $categories = Category::getAll(); 
+                $categories = Category::getAll();
 
                 if (!empty($categories)) {
                     echo "<select name='category' id='category' required>";
@@ -167,23 +222,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<p>No categories found.</p>";
                 }
                 ?>
-            </div>
-            <div>
-                <label for="price">Price:</label>
-                <input type="number" name="price" id="price" step="0.01" required>
-            </div>
-            <div>
-                <label for="images">Image Link:</label>
-                <input type="url" name="images" id="images" required>
-            </div>
-            <div>
-                <input type="submit" value="Add Event">
-            </div>
+            </div1>
+            <div1>
+                <!-- <label for="price">Price:</label> -->
+                <input placeholder="Price" type="number" name="price" id="price" step="0.01" required>
+            </div1>
+            <div1>
+                <!-- <label for="images">Image Link:</label> -->
+                <input placeholder="Image Link" type="url" name="images" id="images" required>
+            </div1>
+            <div1>
+                <input type="submit" class="btn-addevent" value="Add Event">
+            </div1>
         </form>
     </section>
-    
-    <footer>
 
-    </footer>
 </body>
+
 </html>

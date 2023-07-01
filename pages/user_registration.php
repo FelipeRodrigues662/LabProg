@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/User.php'; 
+require_once '../classes/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $user = new User($id ,$name, $email, $hashedPassword, $userType);
+    $user = new User($id, $name, $email, $hashedPassword, $userType);
     $user->save();
 
     header('Location: user_login.php');
@@ -19,30 +19,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Event Management System - User Registration</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Registration - Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/registro_user.css">
 </head>
+
 <body>
-    <header>
-        <h1>Event Management System</h1>
-    </header>
-    
-    <form action="user_registration.php" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
-        <br>
-        <input type="submit" value="Register">
-    </form>
-    <br>
-    <a href="user_login.php">Voltar para o Login</a>
-    <footer>
-    </footer>
+    <div class="main-login">
+        <section-right class="card-login">
+            <h2>SignUp</h2>
+            <form action="user_registration.php" method="POST">
+                <div class="textfield">
+                    <input placeholder="Name" type="text" name="name" id="name" required>
+                </div>
+                <div class="textfield">
+                    <input placeholder="Email" type="email" name="email" id="email" required>
+                </div>
+                <div class="textfield">
+                    <input placeholder="Password" type="password" name="password" id="password" required>
+                </div>
+                <br>
+                <button class="btn-login" type="submit" value="Register">Register</button>
+            </form>
+            <p>Already have a account? <a href="user_login.php">SignIn</a></p>
+        </section-right>
+
+        <section-left>
+            <h2>Register and enjoy</h2>
+            <img class="image" src="../assets/animate.svg" alt="animacao">
+        </section-left>
+    </div>
 </body>
+
 </html>
