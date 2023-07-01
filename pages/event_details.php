@@ -12,6 +12,46 @@ if (isset($_SESSION['user'])) {
 
 
 <style>
+    /* Cabeçalho */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #014bfd;
+    color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0px 0px 16px 16px;
+    box-shadow: 0px 0px 10px #333;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Navegação */
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a{
+    color: #f1f1f1;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .9s;
+}
+
+nav ul li a:hover{
+    transform: scale(1.1);
+    color: #f8f8f8;
+}
     .event-details {
         display: flex;
         flex-direction: column;

@@ -19,6 +19,72 @@ if (isset($_GET['query'])) {
 ?>
 
 <style>
+*{
+    text-decoration: none;
+    color: inherit;
+}
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    background-color: #ffffff;
+}
+
+/* Retirar rolagem da scrollbar */
+body::-webkit-scrollbar{
+    display: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #014bfd;
+    color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0px 0px 16px 16px;
+    box-shadow: 0px 0px 10px #333;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Navegação */
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a{
+    color: #f1f1f1;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .9s;
+}
+
+nav ul li a:hover{
+    transform: scale(1.1);
+    color: #f8f8f8;
+}
+
     .register-event {
         border: 1px solid #f1f1f1;
         padding: 10px;
@@ -123,90 +189,6 @@ if (isset($_GET['query'])) {
         background-color: #3858e9;
     }
 
-    /* Seção de eventos */
-    .title h2 {
-        display: flex;
-    }
-
-    h2 {
-        font-size: 28px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        position: center;
-    }
-
-    section1 {
-        padding: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-    }
-
-    section2 {
-        display: flex;
-        margin: 50px;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #f1f1f1;
-        padding: 20px;
-        box-shadow: 4px 4px 10px #495757;
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .eventos {
-        display: flex;
-        flex-direction: row;
-    }
-
-
-    #eventsContainer {
-        display: flex;
-        margin-top: 20px;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .event-link img {
-        width: 200px;
-        margin: 5px;
-        /* max-width: 100px; */
-    }
-
-    .event-link img:hover {
-        transform: none;
-    }
-
-    .event {
-        display: flex;
-        flex-direction: column;
-        background-color: #f1f1f1;
-        border-radius: 20px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-        transition: 0.9s;
-        flex-wrap: wrap;
-    }
-
-    .event h3 {
-        margin-top: 0;
-        font-size: 20px;
-        transition: 0.3s;
-    }
-
-    .event h3:hover {
-        color: #3858e9;
-    }
-
-    .event p {
-        margin-bottom: 10px;
-    }
 </style>
 
 <!DOCTYPE html>
