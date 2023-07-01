@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Noto+Sans:wght@400;700&display=swap');
+
+/* Estilo geral */
+*{
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    background-color: #f1f1f1;
+}
+
+.main-login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+section-left h2{
+    font-size: 50px;
+    color: #494747;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.image {
+    width: 30vw;
+}
+
+.section-right {
+    width: 30vw;
+    height: 100vh;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    flex-direction: column;
+}
+
+.card-login {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: black;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0px 10px 50px #495757;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+.textfield {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.textfield > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #f1f1f1;
+    color: #000000de;
+    font: 12pt;
+    box-shadow: 2px 2px 20px #495757;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textfield > label {
+    color: #f0ffffde;
+    margin-bottom: 10px;
+}
+
+.textfield > input::placeholder{
+    color: #000000;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 16px 0px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #f1f1f1;
+    background-color: #014bfd;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #ffffff52;
+    transition: 0.9s;
+}
+
+.btn-login:hover{
+    background-color: #4762ce;
+    color: white;
+    transform: scale(1.1);
+}
+
+a{
+    color: #014bfd;
+    transition: 0.9s;
+}
+
+a:hover{
+    color: #7c8ac5;
+    transform: scale(1.1);
+}
+
+
+

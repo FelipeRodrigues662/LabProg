@@ -4,7 +4,7 @@ session_start();
 require_once '../classes/User.php';
 
 if (!isset($_SESSION['user']) || (unserialize($_SESSION['user'])->getUserType() !== 'admin' && unserialize($_SESSION['user'])->getUserType() !== 'grant_admin')) {
-    header('Location: ../services/unauthorized.php'); 
+    header('Location: ../services/unauthorized.php');
     exit();
 }
 
@@ -17,6 +17,7 @@ if (isset($_SESSION['user'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Event List</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -24,67 +25,92 @@ if (isset($_SESSION['user'])) {
         .event-container {
             display: flex;
             flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
         }
 
         .event {
-            width: 25%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        .event a {
-            text-decoration: none;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            padding: 20px;
         }
 
         .event img {
             width: 100%;
+            border-radius: 10px;
             height: auto;
             margin-bottom: 10px;
         }
 
         .event h3 {
-            margin: 0;
+            margin-bottom: 10px;
             font-size: 16px;
         }
 
-        .search-bar {
+        h1 {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            margin-top: 20px;
             margin-bottom: 20px;
+            margin-right: 80px;
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            align-items: right;
         }
 
-        .search-bar input[type="text"] {
-            width: 200px;
-            padding: 5px;
-            font-size: 14px;
+        form input {
+            padding: 10px;
+            margin-right: 5px;
+            border-radius: 8px;
+            border: 0.5px solid;
         }
 
-        .search-bar button[type="submit"] {
-            padding: 5px 10px;
-            font-size: 14px;
+        .btn-search {
+            width: 60px;
+            background-color: transparent;
+            padding: 4px;
+            border-radius: 8px;
+            border: none;
+            background-color: #014bfd;
+            color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        .btn-search:hover {
+            background-color: #3858e9;
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Event System</h1>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="./index.php"><img class="home-page" src="../assets/home.png" title="Home"></a></li>
+                <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')): ?>
+                    <li><a class="register-event" href="../pages/add_event.php">Add Event</a></li>
+                <?php endif; ?>
+                <?php if ($user instanceof User): ?>
+                    <li><a class="register-event" href="../pages/process_registration.php">Registrar evento</a></li>
+                    <li><a href="../pages/user_profile.php"><img class="perfil-img" src="../assets/perfil.png"
+                                title="Profile"></a>
+                    </li>
+                    <li><a href="../services/logout.php"><img class="leave-img" src="../assets/sair.png"
+                                title="SignOut"></a></li>
+                <?php else: ?>
+                    <li><a href="../pages/user_login.php">Login</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
     </header>
-    
-    <nav>
-        <ul>
-            <li><a href="./index.php">Home</a></li>
-            <?php if ($user instanceof User && ($user->getUserType() === 'admin' || $user->getUserType() === 'grant_admin')) : ?>
-                <li><a href="../pages/add_event.php">Add Event</a></li>
-            <?php endif; ?>
-            <?php if ($user instanceof User) : ?>
-                <li><a href="../pages/process_registration.php">Registrar evento</a></li>
-                <li><a href="../pages/user_profile.php">Profile</a></li>
-                <li><a href="../services/logout.php">Logout</a></li>
-            <?php else : ?>
-                <li><a href="../pages/user_login.php">Login</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-    
+
     <section class="event-list">
         <?php
         require_once __DIR__ . '/../database/connection.php';
@@ -97,16 +123,16 @@ if (isset($_SESSION['user'])) {
         } else {
             $events = Event::getAll();
         }
-
+        echo "<h2>Event List</h2>";
         echo "<div class='search-bar'>";
         echo "<form action='event_list.php' method='GET'>";
-        echo "<input type='text' name='search' placeholder='Pesquisar evento'>";
-        echo "<button type='submit'>Pesquisar</button>";
+        echo "<input type='text' name='search' placeholder='Search event'>";
+        echo "<button class='btn-search' type='submit'>Search</button>";
         echo "</form>";
         echo "</div>";
 
         if (!empty($events)) {
-            echo "<h2>Event List</h2>";
+
             echo "<div class='event-container'>";
 
             foreach ($events as $event) {
@@ -116,8 +142,8 @@ if (isset($_SESSION['user'])) {
 
                 echo "<div class='event'>";
                 echo "<a href='./edit.php?id={$eventId}'>";
-                echo "<img src='{$eventImage}' alt='Event Image'>";
                 echo "<h3>{$eventTitle}</h3>";
+                echo "<img src='{$eventImage}' alt='Event Image'>";
                 echo "</a>";
                 echo "</div>";
             }
@@ -128,8 +154,6 @@ if (isset($_SESSION['user'])) {
         }
         ?>
     </section>
-    
-    <footer>
-    </footer>
 </body>
+
 </html>

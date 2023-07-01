@@ -10,7 +10,7 @@ class User
     private $password;
     private $userType;
 
-    public function __construct($id ,$name, $email, $password, $userType)
+    public function __construct($id, $name, $email, $password, $userType)
     {
         $this->id = $id;
         $this->name = $name;
@@ -19,7 +19,8 @@ class User
         $this->userType = $userType;
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -41,10 +42,10 @@ class User
     public function save()
     {
         $conn = getConnection();
-        
+
         // Verificar se o usuário já existe no banco de dados
         $existingUser = User::getUserByEmail($this->email);
-        
+
         if ($existingUser) {
             // Atualizar os dados do usuário
             if (empty($this->password)) {
@@ -61,7 +62,7 @@ class User
             $stmt = $conn->prepare("INSERT INTO users (name, email, password, user_type) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $this->name, $this->email, $this->password, $this->userType);
         }
-        
+
         $stmt->execute();
         $stmt->close();
         $conn->close();
@@ -111,7 +112,8 @@ class User
         return $user ? new User($user['id'], $user['name'], $user['email'], $user['password'], $user['user_type']) : null;
     }
 
-    public static function getUsers($search = null) {
+    public static function getUsers($search = null)
+    {
         $conn = getConnection(); // Supondo que a função getConnection() esteja definida dentro da classe User
         $stmt = $conn->prepare("SELECT * FROM users WHERE name LIKE ?");
         $searchTerm = "%" . $search . "%";

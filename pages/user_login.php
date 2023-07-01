@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user) {
             session_start();
-            $_SESSION['user'] = serialize($user); 
-            header('Location: user_profile.php');
+            $_SESSION['user'] = serialize($user);
+            header('Location: index.php');
             exit();
         } else {
             $error = 'Credenciais inválidas.';
@@ -31,36 +31,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Event Management System - User Login</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Login - Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
+
 <body>
-    <header>
-        <h1>Event Management System</h1>
-    </header>
+    <div class="main-login">
+        <section-left>
+            <h2>SignIn</h2>
+            <img class="image" src="../assets/animate2.svg" alt="animacao">
+        </section-left>
 
-    
-    <section>
-        <h2>Login</h2>
-        <?php if (!empty($error)) : ?>
-            <p class="error"><?php echo $error; ?></p>
-        <?php endif; ?>
-        
-        <form method="POST" action="">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Login</button>
-        </form>
+        <section-right class="card-login">
+            <h2>Login</h2>
+            <?php if (!empty($error)): ?>
+                <p class="error">
+                    <?php echo $error; ?>
+                </p>
+            <?php endif; ?>
 
-        <p>Não possui uma conta? <a href="./user_registration.php">Registrar-se</a></p>
-    </section>
-    
-    <footer>
-    </footer>
+            <form method="POST" action="">
+                <div class="textfield">
+                    <input placeholder="Email" type="email" id="email" name="email" required>
+                </div>
+                <div class="textfield">
+                    <input placeholder="Password" type="password" id="password" name="password" required>
+                </div>
+                <br>
+                <button class="btn-login" type="submit">Login</button>
+            </form>
+
+            <p>Don't have a account? <a href="./user_registration.php">SignUp now</a></p>
+        </section-right>
+    </div>
 </body>
+
 </html>
