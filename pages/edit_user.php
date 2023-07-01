@@ -31,65 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<style>
-    section5 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #f1f1f1;
-        margin: 20px 300px 20px 300px;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 4px 4px 10px #495757;
-    }
-
-    .text {
-        margin: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
-    form select {
-        margin-top: 10px;
-        margin-bottom: 20px;
-        padding: 8px;
-        border-radius: 10px;
-        border: 0.5px solid;
-        background-color: #f8f8f8;
-        color: black;
-    }
-
-    form input {
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 8px;
-        border: 0.5px solid;
-    }
-
-    .btn-save {
-        width: 250px;
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background-color: #014bfd;
-        color: #f1f1f1;
-        cursor: pointer;
-    }
-
-    .btn-save:hover {
-        background-color: #3858e9;
-    }
-</style>
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Edit User</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/edit_user.css">
 </head>
 
 <body>

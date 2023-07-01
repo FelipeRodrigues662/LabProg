@@ -26,98 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 
         ?>
 
-
-        <style>
-            h2 {
-                margin-top: 30px;
-                display: flex;
-                justify-content: center;
-            }
-
-            section6 {
-                display: flex;
-                justify-content: center;
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: center;
-                gap: 30px;
-                margin: 10px;
-            }
-
-            form {
-                background-color: #f1f1f1;
-                width: 40%;
-                padding: 30px;
-                border-radius: 20px;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                display: flex;
-                flex-direction: column;
-                justify-content: right;
-                align-items: right;
-                box-shadow: 4px 4px 10px #495757;
-            }
-
-            form input {
-                padding: 10px;
-                margin-right: 5px;
-                border-radius: 8px;
-                border: 0.5px solid;
-            }
-
-            form textarea {
-                padding: 10px;
-                margin-right: 5px;
-                border-radius: 8px;
-                border: 0.5px solid;
-            }
-
-            .btn-update {
-                width: 100%;
-                background-color: transparent;
-                padding: 10px;
-                font-size: 16px;
-                border-radius: 8px;
-                border: none;
-                background-color: #014bfd;
-                color: #f1f1f1;
-                cursor: pointer;
-            }
-
-            .btn-update:hover {
-                background-color: #3858e9;
-            }
-
-            .btn-delete {
-                width: 100%;
-                background-color: transparent;
-                padding: 10px;
-                font-size: 16px;
-                border-radius: 8px;
-                border: none;
-                background-color: #014bfd;
-                color: #f1f1f1;
-                cursor: pointer;
-            }
-
-            .btn-delete:hover {
-                background-color: #3858e9;
-            }
-
-            .deletar {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        </style>
-
-
         <!DOCTYPE html>
         <html>
 
         <head>
             <title>Event Management System - Edit Event</title>
-            <link rel="stylesheet" type="text/css" href="../css/style.css">
+            <link rel="stylesheet" type="text/css" href="../css/edit.css">
         </head>
 
         <body>

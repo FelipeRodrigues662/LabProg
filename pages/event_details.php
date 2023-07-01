@@ -10,50 +10,12 @@ if (isset($_SESSION['user'])) {
 
 ?>
 
-
-<style>
-    .event-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 60px 160px 10px 160px;
-        background-color: #f1f1f1;
-        border-radius: 30px;
-        padding: 10px;
-        box-shadow: 4px 4px 20px black;
-    }
-
-    .img-eventdetails {
-        width: 500px;
-        border-radius: 20px
-    }
-
-    .btn-subscription {
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background-color: #014bfd;
-        color: #f1f1f1;
-        cursor: pointer;
-        margin-bottom: 1px;
-        transition: 0.9s;
-    }
-
-    .btn-subscription:hover {
-        background-color: #3858e9;
-        transform: scale(1.1);
-    }
-</style>
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Event Details</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/event_details.css">
 </head>
 
 <body>

@@ -22,112 +22,12 @@ if ($event_id) {
 }
 ?>
 
-<style>
-    section6 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #f1f1f1;
-        margin: 20px 300px 20px 300px;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 4px 4px 10px #495757;
-    }
-
-    .text {
-        margin: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    form select {
-        margin-top: 10px;
-        margin-bottom: 20px;
-        padding: 8px;
-        border-radius: 10px;
-        border: 0.5px solid;
-        background-color: #f8f8f8;
-        color: black;
-    }
-
-    form textarea {
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 8px;
-        border: 0.5px solid;
-    }
-
-    p {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    span {
-        font-weight: bold;
-    }
-
-    .img-back {
-        width: 40px;
-        margin-left: 50px;
-        transition: 0.9s;
-    }
-
-    section7 {
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 30px;
-        margin: 10px;
-    }
-
-    .review {
-        width: 300px;
-        display: flex;
-        color: #f1f1f1;
-        background-color: #495757;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 4px 4px 10px #495757;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .img-back:hover {
-        transform: scale(1.1);
-    }
-
-    .btn-submit {
-        margin-top: 20px;
-        width: 250px;
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background-color: #014bfd;
-        color: #f1f1f1;
-        cursor: pointer;
-    }
-
-    .btn-submit:hover {
-        background-color: #3858e9;
-    }
-</style>
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Event Reviews</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/reviews.css">
 </head>
 
 <body>

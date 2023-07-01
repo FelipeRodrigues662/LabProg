@@ -20,72 +20,7 @@ if (isset($_SESSION['user'])) {
 
 <head>
     <title>Event List</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <style>
-        .event-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .event {
-            display: flex;
-            flex-direction: column;
-            width: 30%;
-            padding: 20px;
-        }
-
-        .event img {
-            width: 100%;
-            border-radius: 10px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .event h3 {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        h1 {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-        }
-
-        form {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-right: 80px;
-            display: flex;
-            flex-direction: row;
-            justify-content: right;
-            align-items: right;
-        }
-
-        form input {
-            padding: 10px;
-            margin-right: 5px;
-            border-radius: 8px;
-            border: 0.5px solid;
-        }
-
-        .btn-search {
-            width: 60px;
-            background-color: transparent;
-            padding: 4px;
-            border-radius: 8px;
-            border: none;
-            background-color: #014bfd;
-            color: #f1f1f1;
-            cursor: pointer;
-        }
-
-        .btn-search:hover {
-            background-color: #3858e9;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../css/event_list.css">
 </head>
 
 <body>

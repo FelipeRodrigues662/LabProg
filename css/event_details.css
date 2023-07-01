@@ -68,83 +68,78 @@ nav ul li a:hover{
     color: #f8f8f8;
 }
 
-
-
-/* Details event section -------------------------------- */
-#image-teste{
-    width: 350px;
+.register-event{
+    border: 1px solid #f1f1f1;
+    padding: 10px;
     border-radius: 10px;
-    transition: 0.9s;
+    transition: 0.3s;
 }
 
-
-.categoria{
-    font-size: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: right;
-}
-
-#category{
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-    background-color: #014bfd;
-    color: #f1f1f1;
-    cursor: pointer;
-}
-
-#category option{
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-    background-color: #000000;
-    color: white;
-}
-
-.pagamento-check{
-    display: flex;
-}
-
-.btn-registrar{
-    margin-top: 20px;
-    font-size: 16px;
-    border-radius: 10px;
-    padding: 8px;
-    border: none;
-    border: none;
-    background-color: #014bfd;
-    color: #f1f1f1;
-    cursor: pointer;
-}
-
-.btn-registrar:hover{
+.register-event:hover{
+    transform: scale(1.1);
     background-color: #3858e9;
 }
 
+.home-page{
+    width: 28px;
+    transition: 0.9s;
+    transition: 0.3s;
+}
 
-/* a{
-    color: #014bfd;
+.home-page:hover{
+    transform: scale(1.1);
+}
+
+.leave-img{
+    width: 30px;
     transition: 0.9s;
 }
 
-a:hover{
-    color: #7c8ac5;
+.leave-img:hover{
     transform: scale(1.1);
-} */
-
-
-/* Rodapé */
-footer{
-    background-color: #333333;
-    color: #fff;
-    margin-top: 20px;
-    padding: 30px;
-    text-align: center;
-    bottom: 0;
-    width: 100%;
 }
 
+.perfil-img{
+    width: 26px;
+    transition: 0.9s;
+}
 
+.perfil-img:hover{
+    transform: scale(1.1);
+}
+
+/* ------------------------------ */
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 160px 10px 160px;
+    background-color: #f1f1f1;
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 4px 4px 20px black;
+}
+
+.img-eventdetails {
+    width: 500px;
+    border-radius: 20px
+}
+
+.btn-subscription {
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #014bfd;
+    color: #f1f1f1;
+    cursor: pointer;
+    margin-bottom: 1px;
+    transition: 0.9s;
+}
+
+.btn-subscription:hover {
+    background-color: #3858e9;
+    transform: scale(1.1);
+}
