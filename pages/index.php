@@ -18,197 +18,6 @@ if (isset($_GET['query'])) {
 }
 ?>
 
-<style>
-    .register-event {
-        border: 1px solid #f1f1f1;
-        padding: 10px;
-        border-radius: 10px;
-        transition: 0.3s;
-    }
-
-    .register-event:hover {
-        transform: scale(1.1);
-        background-color: #3858e9;
-    }
-
-    .home-page {
-        width: 28px;
-        transition: 0.9s;
-        transition: 0.3s;
-    }
-
-    .home-page:hover {
-        transform: scale(1.1);
-    }
-
-    .leave-img {
-        width: 30px;
-        transition: 0.9s;
-    }
-
-    .leave-img:hover {
-        transform: scale(1.1);
-    }
-
-    .perfil-img {
-        width: 26px;
-        transition: 0.9s;
-    }
-
-    .perfil-img:hover {
-        transform: scale(1.1);
-    }
-
-    .subheader {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 20px;
-    }
-
-    .search-form-2 {
-        margin: 24px;
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-    }
-
-    .space-form-text-2 {
-        padding: 12px;
-        margin-right: 4px;
-        border-radius: 8px;
-        border: solid 0.5px;
-    }
-
-    .btn-search {
-        width: 50px;
-        background-color: transparent;
-        padding: 2px;
-        border-radius: 8px;
-        border: none;
-        background-color: #014bfd;
-        color: #f1f1f1;
-        cursor: pointer;
-    }
-
-    .btn-search:hover {
-        background-color: #3858e9;
-    }
-
-    .search-form-3 {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 30px;
-    }
-
-    .space-form-text-3 {
-        padding: 8px;
-        margin-right: 4px;
-        border-radius: 8px;
-        border: solid 0.5px;
-    }
-
-    .btn-search-3 {
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background-color: #014bfd;
-        color: #f1f1f1;
-        cursor: pointer;
-        margin-bottom: 1px;
-    }
-
-    .btn-search-3:hover {
-        background-color: #3858e9;
-    }
-
-    /* Seção de eventos */
-    .title h2 {
-        display: flex;
-    }
-
-    h2 {
-        font-size: 28px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        position: center;
-    }
-
-    section1 {
-        padding: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-    }
-
-    section2 {
-        display: flex;
-        margin: 50px;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #f1f1f1;
-        padding: 20px;
-        box-shadow: 4px 4px 10px #495757;
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .eventos {
-        display: flex;
-        flex-direction: row;
-    }
-
-
-    #eventsContainer {
-        display: flex;
-        margin-top: 20px;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .event-link img {
-        width: 200px;
-        margin: 5px;
-        /* max-width: 100px; */
-    }
-
-    .event-link img:hover {
-        transform: none;
-    }
-
-    .event {
-        display: flex;
-        flex-direction: column;
-        background-color: #f1f1f1;
-        border-radius: 20px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-        transition: 0.9s;
-        flex-wrap: wrap;
-    }
-
-    .event h3 {
-        margin-top: 0;
-        font-size: 20px;
-        transition: 0.3s;
-    }
-
-    .event h3:hover {
-        color: #3858e9;
-    }
-
-    .event p {
-        margin-bottom: 10px;
-    }
-</style>
-
 <!DOCTYPE html>
 <html>
 
@@ -253,29 +62,27 @@ if (isset($_GET['query'])) {
         </form>
     </div>
 
-    <div class="eventos">
-        <section1 class="events">
-            <br>
-            <?php
-            if (!empty($events)) {
-                foreach ($events as $event) {
-                    $eventId = $event->getId();
-                    $eventDetailsUrl = "event_details.php?id=$eventId";
+    <div class="eventos-geral">
+        <br>
+        <?php
+        if (!empty($events)) {
+            foreach ($events as $event) {
+                $eventId = $event->getId();
+                $eventDetailsUrl = "event_details.php?id=$eventId";
 
-                    echo "<a href='$eventDetailsUrl' class='event'>";
-                    echo "<h3>" . $event->getTitle() . "</h3>";
-                    echo "<img id='image-teste' src='" . $event->getImages() . "' alt='Event Image'>";
-                    echo "<p>" . $event->getDescription() . "</p>";
-                    echo "<p>Date: " . $event->getDate() . "</p>";
-                    echo "<p>Time: " . $event->getTime() . "</p>";
-                    echo "<p>Location: " . $event->getLocation() . "</p>";
-                    echo "</a>";
-                }
-            } else {
-                echo "<p>No events found.</p>";
+                echo "<a href='$eventDetailsUrl' class='event'>";
+                echo "<h3>" . $event->getTitle() . "</h3>";
+                echo "<img class='image-teste' src='" . $event->getImages() . "' alt=''>";
+                echo "<p>" . $event->getDescription() . "</p>";
+                echo "<p>Date: " . $event->getDate() . "</p>";
+                echo "<p>Time: " . $event->getTime() . "</p>";
+                echo "<p>Location: " . $event->getLocation() . "</p>";
+                echo "</a>";
             }
-            ?>
-        </section1>
+        } else {
+            echo "<p>No events found.</p>";
+        }
+        ?>
     </div>
 </body>
 

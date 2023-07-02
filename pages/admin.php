@@ -93,8 +93,8 @@ if (isset($_GET['search'])) {
         </table>
     </section10>
 
-    <h2>Event List</h2>
     <div class="ver">
+        <h2>Event List</h2>
         <a href="event_list.php"><button class="btn-events"> Ver Lista de Eventos </button></a>
     </div>
 </body>

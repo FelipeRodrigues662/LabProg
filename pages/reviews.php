@@ -54,7 +54,10 @@ if ($event_id) {
     </header>
 
     <section>
-        <h2>Event Reviews</h2>
+        <div class="reviewtext">
+            <h2>Event Reviews</h2>
+        </div>
+
         <section7>
 
             <?php if (!empty($reviews)): ?>
@@ -63,13 +66,13 @@ if ($event_id) {
                     $reviewer = User::getById($review['user_id']);
                     ?>
                     <div class="review">
-                        <p><span>User: </span>
+                        <p><span>User:&nbsp</span>
                             <?php echo $reviewer->getName(); ?>
                         </p>
-                        <p><span>Score: </span>
+                        <p><span>Score:&nbsp</span>
                             <?php echo $review['score']; ?>
                         </p>
-                        <p><span>Comment: </span>
+                        <p><span>Comment:&nbsp</span>
                             <?php echo $review['comment']; ?>
                         </p>
                     </div>

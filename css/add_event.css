@@ -140,6 +140,12 @@ div1 {
     margin: 10px;
 }
 
+#category{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
 .btn-addevent {
     background-color: transparent;
     padding: 10px;
