@@ -27,11 +27,7 @@ if ($event_id) {
 
 <head>
     <title>Event Reviews</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="../css/reviews.css">
-=======
     <link rel="stylesheet" href="../css/reviews.css">
->>>>>>> 979cb3e3806dc4310c988583c8b4fbeced82e28e
 </head>
 
 <body>

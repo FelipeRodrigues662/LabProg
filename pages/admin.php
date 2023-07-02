@@ -27,7 +27,7 @@ if (isset($_GET['search'])) {
 
 <head>
     <title>Admin</title>
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
 </head>
 
 <body>
