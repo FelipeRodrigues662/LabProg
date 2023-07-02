@@ -15,7 +15,7 @@ if (isset($_SESSION['user'])) {
 
 <head>
     <title>Event Details</title>
-    <link rel="stylesheet" type="text/css" href="../css/event_details.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/event_details.css">
 </head>
 
 <body>
