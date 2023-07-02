@@ -95,61 +95,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<style>
-    section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 80px;
-    }
-
-    .formulario-event {
-        background-color: #f0f0f0;
-        padding: 40px;
-        border-radius: 20px;
-        width: 800px;
-        box-shadow: 4px 4px 8px black;
-    }
-
-    .formulario-event input {
-        border-radius: 10px;
-        padding: 14px;
-        border: none;
-    }
-
-    div1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        padding: 10px;
-        margin: 10px;
-    }
-
-    .btn-addevent {
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background-color: #014bfd;
-        color: #f1f1f1;
-        cursor: pointer;
-        margin-bottom: 1px;
-        transition: 0.9s;
-    }
-
-    .btn-addevent:hover {
-        background-color: #3858e9;
-        transform: scale(1.1);
-    }
-</style>
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Add Event</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/add_event.css">
 </head>
 
 <body>
@@ -181,15 +132,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form class="formulario-event" action="./add_event.php" method="POST">
             <div1>
-                <!-- <label for="title">Title:</label> -->
+                <label for="title">Title:</label>
                 <input placeholder="Title" type="text" name="title" id="title" required>
             </div1>
             <div1>
-                <!-- <label for="description">Description:</label> -->
+                <label for="description">Description:</label>
                 <input placeholder="Description" name="description" id="description" required></input>
             </div1>
             <div1>
-                <!-- <label for="date">Date:</label> -->
+                <label for="date">Date:</label>
                 <input placeholder="Date" type="date" name="date" id="date" required>
             </div1>
             <div1>
@@ -197,13 +148,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="time" placeholder="Time" name="time" id="time" required>
             </div1>
             <div1>
-                <!-- <label for="location">Location:</label> -->
+                <label for="location">Location:</label>
                 <input placeholder="Location" type="text" name="location" id="location" required>
             </div1>
             <div1>
-                <!-- <label for="category">Category:</label> -->
-
-
+                <label for="category">Category:</label>
                 <?php
                 require_once __DIR__ . '/../classes/Category.php';
 
@@ -224,11 +173,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ?>
             </div1>
             <div1>
-                <!-- <label for="price">Price:</label> -->
+                <label for="price">Price:</label>
                 <input placeholder="Price" type="number" name="price" id="price" step="0.01" required>
             </div1>
             <div1>
-                <!-- <label for="images">Image Link:</label> -->
+                <label for="images">Image Link:</label>
                 <input placeholder="Image Link" type="url" name="images" id="images" required>
             </div1>
             <div1>
@@ -237,6 +186,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </section>
 
+    <footer>
+
+    </footer>
 </body>
 
 </html>

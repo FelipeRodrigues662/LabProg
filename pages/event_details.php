@@ -10,90 +10,12 @@ if (isset($_SESSION['user'])) {
 
 ?>
 
-
-<style>
-    /* Cabeçalho */
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #014bfd;
-    color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
-    border-radius: 0px 0px 16px 16px;
-    box-shadow: 0px 0px 10px #333;
-}
-
-h1 {
-    margin: 0;
-}
-
-/* Navegação */
-nav ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-}
-
-nav ul li {
-    margin-right: 20px;
-}
-
-nav ul li a{
-    color: #f1f1f1;
-    font-size: 18px;
-    font-weight: 500;
-    transition: .9s;
-}
-
-nav ul li a:hover{
-    transform: scale(1.1);
-    color: #f8f8f8;
-}
-    .event-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 60px 160px 10px 160px;
-        background-color: #f1f1f1;
-        border-radius: 30px;
-        padding: 10px;
-        box-shadow: 4px 4px 20px black;
-    }
-
-    .img-eventdetails {
-        width: 500px;
-        border-radius: 20px
-    }
-
-    .btn-subscription {
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background-color: #014bfd;
-        color: #f1f1f1;
-        cursor: pointer;
-        margin-bottom: 1px;
-        transition: 0.9s;
-    }
-
-    .btn-subscription:hover {
-        background-color: #3858e9;
-        transform: scale(1.1);
-    }
-</style>
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Event Details</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/event_details.css">
 </head>
 
 <body>

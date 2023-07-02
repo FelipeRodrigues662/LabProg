@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Noto+Sans:wght@400;700&display=swap');
+
+
+/* Estilo geral */
+*{
+    text-decoration: none;
+    color: inherit;
+}
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    background-color: #ffffff;
+}
+
+/* Retirar rolagem da scrollbar */
+body::-webkit-scrollbar{
+    display: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #014bfd;
+    color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0px 0px 16px 16px;
+    box-shadow: 0px 0px 10px #333;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Navegação */
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a{
+    color: #f1f1f1;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .9s;
+}
+
+nav ul li a:hover{
+    transform: scale(1.1);
+    color: #f8f8f8;
+}
+
+.register-event{
+    border: 1px solid #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.register-event:hover{
+    transform: scale(1.1);
+    background-color: #3858e9;
+}
+
+.home-page{
+    width: 28px;
+    transition: 0.9s;
+    transition: 0.3s;
+}
+
+.home-page:hover{
+    transform: scale(1.1);
+}
+
+.leave-img{
+    width: 30px;
+    transition: 0.9s;
+}
+
+.leave-img:hover{
+    transform: scale(1.1);
+}
+
+.perfil-img{
+    width: 26px;
+    transition: 0.9s;
+}
+
+.perfil-img:hover{
+    transform: scale(1.1);
+}
+
+/* ------------------------------ */
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 160px 10px 160px;
+    background-color: #f1f1f1;
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 4px 4px 20px black;
+}
+
+.img-eventdetails {
+    width: 500px;
+    border-radius: 20px
+}
+
+.btn-subscription {
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #014bfd;
+    color: #f1f1f1;
+    cursor: pointer;
+    margin-bottom: 1px;
+    transition: 0.9s;
+}
+
+.btn-subscription:hover {
+    background-color: #3858e9;
+    transform: scale(1.1);
+}

@@ -1,5 +1,3 @@
-CREATE DATABASE labprog;
-USE labprog;
 -- Criação da tabela "users"
 CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -44,31 +42,10 @@ CREATE TABLE reviews (
   id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT,
   event_id INT,
-  score INT,  
+  score INT,
   comment TEXT,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (event_id) REFERENCES events(id)
 );
 
 
-INSERT INTO `users` (`name`, `email`, `password`, `user_type`) 
-VALUES ('Grant Admin', 'grant@grant.com', '$2y$10$QpVgUO1NYiL0Bep/oagcgOXNBwy8JYKnrQljUZMnq0nVWBWYTVr6y', 'grant_admin');
-
-INSERT INTO `users` (`name`, `email`, `password`, `user_type`) 
-VALUES ('Admin', 'admin@admin.com', '$2y$10$QpVgUO1NYiL0Bep/oagcgOXNBwy8JYKnrQljUZMnq0nVWBWYTVr6y', 'admin');
-
-INSERT INTO `users` (`name`, `email`, `password`, `user_type`) 
-VALUES ('Regular', 'regular@regular.com', '$2y$10$QpVgUO1NYiL0Bep/oagcgOXNBwy8JYKnrQljUZMnq0nVWBWYTVr6y', 'regular');
-
-INSERT INTO `categories` (`name`) VALUES ('Free');
-INSERT INTO `categories` (`name`) VALUES ('Executivo');
-INSERT INTO `categories` (`name`) VALUES ('Premium');
-
-INSERT INTO `events` (`title`, `description`, `date`, `time`, `location`, `category_id`, `price`, `images`) 
-VALUES ('Lolla Palooza', 'Teste1', '2023-07-20', '00:30:00', 'SP', '1', '10.00', 'https://encurtador.com.br/amsSU');
-
-INSERT INTO `events` (`title`, `description`, `date`, `time`, `location`, `category_id`, `price`, `images`) 
-VALUES ('Rock In Rio', 'Teste2', '2023-10-30', '12:30:00', 'RJ', '2', '200.00', 'https://encurtador.com.br/abftE');
-
-INSERT INTO `events` (`title`, `description`, `date`, `time`, `location`, `category_id`, `price`, `images`) 
-VALUES ('The Town', 'Teste3', '2024-02-20', '09:30:00', 'SP', '3', '500.00', 'https://encurtador.com.br/klW59');x 
