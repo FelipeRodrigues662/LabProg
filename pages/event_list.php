@@ -20,7 +20,7 @@ if (isset($_SESSION['user'])) {
 
 <head>
     <title>Event List</title>
-    <link rel="stylesheet" type="text/css" href="../css/event_list.css">
+    <link rel="stylesheet" href="../css/event_list.css">
 </head>
 
 <body>
@@ -58,7 +58,7 @@ if (isset($_SESSION['user'])) {
         } else {
             $events = Event::getAll();
         }
-        echo "<h2>Event List</h2>";
+        echo "<h2 class='reviewtext'>Event List</h2>";
         echo "<div class='search-bar'>";
         echo "<form action='event_list.php' method='GET'>";
         echo "<input type='text' name='search' placeholder='Search event'>";

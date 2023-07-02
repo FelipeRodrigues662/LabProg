@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <title>Registration - Page</title>
-    <link rel="stylesheet" type="text/css" href="../css/registro_user.css">
+    <link rel="stylesheet" href="../css/registro_user.css">
 </head>
 
 <body>
