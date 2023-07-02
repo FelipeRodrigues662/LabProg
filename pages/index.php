@@ -23,7 +23,11 @@ if (isset($_GET['query'])) {
 
 <head>
     <title>Home</title>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="../CSS/index.css">
+=======
+    <link rel="stylesheet" href="../css/index.css">
+>>>>>>> 979cb3e3806dc4310c988583c8b4fbeced82e28e
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 

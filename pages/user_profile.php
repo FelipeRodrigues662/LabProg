@@ -19,7 +19,11 @@ if ($user) {
 
 <head>
     <title>User Profile</title>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="../css/user_profile.css">
+=======
+    <link rel="stylesheet" href="../css/user_profile.css">
+>>>>>>> 979cb3e3806dc4310c988583c8b4fbeced82e28e
 </head>
 
 <body>

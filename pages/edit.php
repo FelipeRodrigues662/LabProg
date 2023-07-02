@@ -31,7 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 
         <head>
             <title>Event Management System - Edit Event</title>
+<<<<<<< HEAD
             <link rel="stylesheet" type="text/css" href="../css/edit.css">
+=======
+            <link rel="stylesheet" href="../css/edit.css">
+>>>>>>> 979cb3e3806dc4310c988583c8b4fbeced82e28e
         </head>
 
         <body>
