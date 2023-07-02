@@ -19,7 +19,7 @@ if ($user) {
 
 <head>
     <title>User Profile</title>
-    <link rel="stylesheet" type="text/css" href="../css/user_profile.css">
+    <link rel="stylesheet" href="../css/user_profile.css">
 </head>
 
 <body>

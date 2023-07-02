@@ -113,15 +113,18 @@ nav ul li a:hover{
 .event-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
+    margin: 30px;
 }
 
 .event {
+    background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
     width: 30%;
     padding: 20px;
+    border-radius: 20px;
 }
 
 .event img {
@@ -134,12 +137,20 @@ nav ul li a:hover{
 .event h3 {
     margin-bottom: 10px;
     font-size: 16px;
+    transition: 0.9s;
 }
 
 h1 {
     margin-top: 30px;
     display: flex;
     justify-content: center;
+}
+
+.reviewtext h2{
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
 }
 
 form {
@@ -172,4 +183,8 @@ form input {
 
 .btn-search:hover {
     background-color: #3858e9;
+}
+
+.event h3:hover {
+    color: #3858e9;
 }

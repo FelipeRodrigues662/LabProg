@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <title>Add Event</title>
-    <link rel="stylesheet" type="text/css" href="../css/add_event.css">
+    <link rel="stylesheet" href="../css/add_event.css">
 </head>
 
 <body>
