@@ -200,3 +200,116 @@ h2{
 .event p{
     margin-bottom: 10px;
 }
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.eventos{
+    display: flex;
+    flex-direction: row;
+}
+
+#eventsContainer{
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.event-link img{
+    width: 200px;
+    margin: 5px;
+
+}
+
+.event-link img:hover{
+    transform: none;
+}
+
+.events {
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: 0.9s;
+    flex-wrap: wrap;
+}
+
+.event h3 {
+    margin-top: 0;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.event h3:hover {
+    color: #3858e9;
+}
+
+.event p{
+    margin-bottom: 10px;
+}
+
+.btn-registrar{
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 8px;
+    border: none;
+    border: none;
+    background-color: #014bfd;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+.btn-registrar:hover{
+    background-color: #3858e9;
+} */
+
+
+
+=======
+>>>>>>> 979cb3e3806dc4310c988583c8b4fbeced82e28e

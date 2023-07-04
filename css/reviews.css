@@ -181,7 +181,10 @@ section6 {
         flex-wrap: wrap;
         align-items: center;
         gap: 30px;
+<<<<<<< HEAD
+=======
         /* margin: 10px; */
+>>>>>>> 979cb3e3806dc4310c988583c8b4fbeced82e28e
     }
 
     .review {
