@@ -27,6 +27,8 @@ Desenvolvemos esse projeto para uma máteria da faculdade onde desenvolvemos um 
         git clone https://github.com/t0k4rt/phpqrcode
 
 4. Utilizar XAMMP, Iniciando o Apache e o MySql
+   
+    ![Captura de tela 2023-07-04 122138](https://github.com/FelipeRodrigues662/LabProg/assets/82169870/6853235e-8679-42b8-bc40-4d28cb425447)
 
 5. Rodar o SQL que está dentro da pasta 'Database' no:
 
