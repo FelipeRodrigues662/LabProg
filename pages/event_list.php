@@ -20,7 +20,7 @@ if (isset($_SESSION['user'])) {
 
 <head>
     <title>Event List</title>
-    <link rel="stylesheet" href="../css/event_list.css">
+    <link rel="stylesheet" href="../CSS/event_list.css">
 </head>
 
 <body>
